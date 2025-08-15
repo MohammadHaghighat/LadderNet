@@ -140,7 +140,7 @@ if resume:
     # Load checkpoint.
     print('==> Resuming from checkpoint..')
     assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
-    checkpoint = torch.load('./checkpoint/'+check_path)
+    checkpoint = torch.load('./checkpoint/'+check_path, map_location=torch.device('cpu'))
     net.load_state_dict(checkpoint['net'])
     start_epoch = checkpoint['epoch']
 
