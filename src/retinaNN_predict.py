@@ -141,7 +141,20 @@ if resume:
     print('==> Resuming from checkpoint..')
     assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
     checkpoint = torch.load('./checkpoint/'+check_path, map_location=torch.device('cpu'))
-    net.load_state_dict(checkpoint['net'])
+    # New, corrected code
+    # The state_dict from the checkpoint has keys with a 'module.' prefix
+    # We need to remove this prefix to match the model's architecture.
+    from collections import OrderedDict
+
+    original_state_dict = checkpoint['net']
+    new_state_dict = OrderedDict()
+
+    for k, v in original_state_dict.items():
+        name = k[7:] # remove `module.`
+    new_state_dict[name] = v
+    
+# Now, load the corrected state_dict
+net.load_state_dict(new_state_dict)
     start_epoch = checkpoint['epoch']
 
 class TrainDataset(Dataset):
