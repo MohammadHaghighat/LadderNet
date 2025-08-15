@@ -151,10 +151,10 @@ if resume:
 
     for k, v in original_state_dict.items():
         name = k[7:] # remove `module.`
-    new_state_dict[name] = v
+        new_state_dict[name] = v
     
-# Now, load the corrected state_dict
-net.load_state_dict(new_state_dict)
+    # Now, load the corrected state_dict
+    net.load_state_dict(new_state_dict)
     start_epoch = checkpoint['epoch']
 
 class TrainDataset(Dataset):
