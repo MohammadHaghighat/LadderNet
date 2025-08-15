@@ -20,7 +20,7 @@ from sklearn.metrics import roc_curve
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_recall_curve
-from sklearn.metrics import jaccard_similarity_score
+from sklearn.metrics import jaccard_score
 from sklearn.metrics import f1_score
 import sys
 sys.path.insert(0, '../')
@@ -281,7 +281,7 @@ if float(confusion[1,1]+confusion[0,1])!=0:
 print("Precision: " +str(precision))
 
 #Jaccard similarity index
-jaccard_index = jaccard_similarity_score(y_true, y_pred, normalize=True)
+jaccard_index = jaccard_score(y_true, y_pred, normalize=True)
 print("\nJaccard similarity score: " +str(jaccard_index))
 
 #F1 score
