@@ -281,7 +281,7 @@ if float(confusion[1,1]+confusion[0,1])!=0:
 print("Precision: " +str(precision))
 
 #Jaccard similarity index
-jaccard_index = jaccard_score(y_true, y_pred, normalize=True)
+jaccard_index = jaccard_score(y_true, y_pred)
 print("\nJaccard similarity score: " +str(jaccard_index))
 
 #F1 score
