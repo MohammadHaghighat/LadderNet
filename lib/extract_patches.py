@@ -336,7 +336,7 @@ def paint_border(data,patch_h,patch_w):
         new_img_w = img_w
     else:
         new_img_w = ((int(img_w)/int(patch_w))+1)*patch_w
-    new_data = np.zeros((data.shape[0],data.shape[1],new_img_h,new_img_w))
+    new_data = np.zeros((data.shape[0],data.shape[1],int(new_img_h),int(new_img_w)))
     new_data[:,:,0:img_h,0:img_w] = data[:,:,:,:]
     return new_data
 
