@@ -21,7 +21,7 @@ patch_width = 48
 
 [training settings]
 #number of total patches:
-N_subimgs = 4000
+N_subimgs = 32000
 #if patches are extracted only inside the field of view:
 inside_FOV = False
 #Number of training epochs
@@ -39,7 +39,7 @@ full_images_to_test = 20
 #How many original-groundTruth-prediction images are visualized in each image
 N_group_visual = 1
 #Compute average in the prediction, improve results but require more patches to be predicted
-average_mode = True
+average_mode = False
 #Only if average_mode==True. Stride for patch extraction, lower value require more patches to be predicted
 stride_height = 5
 stride_width = 5
