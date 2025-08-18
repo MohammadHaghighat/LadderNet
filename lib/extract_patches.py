@@ -299,7 +299,7 @@ def recompone(data,N_h,N_w):
     assert(len(data.shape)==4)
     N_pacth_per_img = N_w*N_h
     assert(data.shape[0]%N_pacth_per_img == 0)
-    N_full_imgs = data.shape[0]/N_pacth_per_img
+    N_full_imgs = data.shape[0]//(N_h*N_w)
     patch_h = data.shape[2]
     patch_w = data.shape[3]
     N_pacth_per_img = N_w*N_h
