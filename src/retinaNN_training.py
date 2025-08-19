@@ -124,7 +124,7 @@ N_sample = min(patches_imgs_train.shape[0],40)
 visualize(group_images(patches_imgs_train[0:N_sample,:,:,:],5),'../'+name_experiment+'/'+"sample_input_imgs")#.show()
 visualize(group_images(patches_masks_train[0:N_sample,:,:,:],5),'../'+name_experiment+'/'+"sample_input_masks")#.show()
 
-best_loss = np.Inf
+best_loss = np.inf
 
 # create a list of learning rate with epochs
 lr_schedule = np.zeros(total_epoch)
