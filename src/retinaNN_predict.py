@@ -55,12 +55,12 @@ path_data = config.get('data paths', 'path_local')
 
 #original test images (for FOV selection)
 DRIVE_test_imgs_original = path_data + config.get('data paths', 'test_imgs_original')
-test_imgs_orig = load_hdf5(DRIVE_test_imgs_original)
+test_imgs_orig = load_hdf5(DRIVE_test_imgs_original, "imgs")
 full_img_height = test_imgs_orig.shape[2]
 full_img_width = test_imgs_orig.shape[3]
 #the border masks provided by the DRIVE
 DRIVE_test_border_masks = path_data + config.get('data paths', 'test_border_masks')
-test_border_masks = load_hdf5(DRIVE_test_border_masks)
+test_border_masks = load_hdf5(DRIVE_test_border_masks, "borderMasks")
 # dimension of the patches
 patch_height = int(config.get('data attributes', 'patch_height'))
 patch_width = int(config.get('data attributes', 'patch_width'))
@@ -105,7 +105,7 @@ if average_mode == True:
         stride_width = stride_width
     )
 else:
-    patches_imgs_test, patches_masks_test = get_data_testing(
+    patches_imgs_test, patches_masks_test, N_h, N_w = get_data_testing(
         DRIVE_test_imgs_original = DRIVE_test_imgs_original,  #original
         DRIVE_test_groudTruth = path_data + config.get('data paths', 'test_groundTruth'),  #masks
         Imgs_to_test = int(config.get('testing settings', 'full_images_to_test')),
@@ -189,9 +189,9 @@ if average_mode == True:
     orig_imgs = my_PreProc(test_imgs_orig[0:pred_imgs.shape[0],:,:,:])    #originals
     gtruth_masks = masks_test  #ground truth masks
 else:
-    pred_imgs = recompone(pred_patches,13,12)       # predictions
-    orig_imgs = recompone(patches_imgs_test,13,12)  # originals
-    gtruth_masks = recompone(patches_masks_test,13,12)  #masks
+    pred_imgs = recompone(pred_patches, N_h, N_w)       # predictions
+    orig_imgs = recompone(patches_imgs_test, N_h, N_w)  # originals
+    gtruth_masks = recompone(patches_masks_test, N_h, N_w)  #masks
 # apply the DRIVE masks on the repdictions #set everything outside the FOV to zero!!
 kill_border(pred_imgs, test_border_masks)  #DRIVE MASK  #only for visualization
 ## back to original dimensions
